@@ -1,0 +1,104 @@
+/* Theme: Full Blast Cards Author: FullBlastCards.com Description: Custom Shopify theme focused on sealed Pokémon products with explosive branding. */
+
+<!-- Begin Layout File: theme.liquid --><!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ shop.name }}</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Open Sans', sans-serif;
+      background-color: #F3F3F3;
+      color: #111;
+    }
+    header {
+      background-color: #111;
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    header nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 1rem;
+    }
+    .hero {
+      background-color: #FFD600;
+      color: #111;
+      text-align: center;
+      padding: 5rem 2rem;
+    }
+    .hero h1 {
+      font-size: 3rem;
+    }
+    .btn {
+      background-color: #E53935;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      font-size: 1rem;
+      cursor: pointer;
+      text-transform: uppercase;
+    }
+    .collection {
+      display: flex;
+      overflow-x: auto;
+      padding: 2rem;
+      gap: 1rem;
+      background: white;
+    }
+    .product-card {
+      background: #F3F3F3;
+      padding: 1rem;
+      border-radius: 8px;
+      min-width: 200px;
+      flex-shrink: 0;
+    }
+    footer {
+      background-color: #111;
+      color: white;
+      text-align: center;
+      padding: 2rem 1rem;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div><strong>{{ shop.name }}</strong></div>
+    <nav>
+      <a href="/collections/all">Shop</a>
+      <a href="/collections/preorders">Preorders</a>
+      <a href="/pages/drop-calendar">Drop Calendar</a>
+      <a href="/pages/about">About</a>
+      <a href="/pages/contact">Contact</a>
+    </nav>
+  </header>  <section class="hero">
+    <h1>Put it on Full Blast</h1>
+    <p>Sealed Pokémon cards only. No fluff. No reseals.</p>
+    <a href="/collections/all" class="btn">Shop Now</a>
+  </section>  <section class="collection">
+    {% for product in collections.frontpage.products %}
+    <div class="product-card">
+      <a href="{{ product.url }}">
+        <img src="{{ product.featured_image | img_url: 'medium' }}" alt="{{ product.title }}" style="width:100%">
+        <p><strong>{{ product.title }}</strong></p>
+        <p>{{ product.price | money }}</p>
+        <button class="btn">View Product</button>
+      </a>
+    </div>
+    {% endfor %}
+  </section>  <footer>
+    <p>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. All rights reserved.</p>
+    <p>Follow us @FullBlastCards</p>
+  </footer>
+</body>
+</html>
+<!-- End Layout File: theme.liquid -->
